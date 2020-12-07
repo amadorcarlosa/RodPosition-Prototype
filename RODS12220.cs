@@ -25,7 +25,7 @@ public class RODS12220 : MonoBehaviour
     void Start()
     {
 
-        resetPosition2 = this.transform.localPosition;
+        resetPosition2 = this.transform.localPosition; // This locks the initial position of the rod
        
 
 
@@ -42,7 +42,7 @@ public class RODS12220 : MonoBehaviour
                 mousePos = Input.mousePosition;
                 mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-                gameObject.transform.position = new Vector3(mousePos.x - startPosX2, mousePos.y - startPosY2, gameObject.transform.position.z);
+                gameObject.transform.position = new Vector3(mousePos.x - startPosX2, mousePos.y - startPosY2, gameObject.transform.position.z); //This drags the rod
 
 
             }
@@ -57,7 +57,7 @@ public class RODS12220 : MonoBehaviour
         {
             Vector3 mousePos;
             mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);  //This connects mouse poistions to the rod
 
             startPosX2 = mousePos.x - transform.position.x;
             startPosY2 = mousePos.y - transform.position.y;
@@ -72,7 +72,7 @@ public class RODS12220 : MonoBehaviour
        
         pop = tag;
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag(pop);
+        gos = GameObject.FindGameObjectsWithTag(pop);//local array from a game object to find target rods
      
 
         Debug.Log("update");
@@ -84,9 +84,9 @@ public class RODS12220 : MonoBehaviour
 
 
             float curDistancex = (Mathf.Abs(go.transform.position.x - this.transform.position.x));
-           float curDistancey = (Mathf.Abs(go.transform.position.y - this.transform.position.y));
+           float curDistancey = (Mathf.Abs(go.transform.position.y - this.transform.position.y)); //calculates each rod and distance fromtarget when released
 
-            if (curDistancex <= 0.2f && curDistancey <= 0.2f && go.name != name && this.gameObject.layer != go.layer)
+            if (curDistancex <= 0.2f && curDistancey <= 0.2f && go.name != name && this.gameObject.layer != go.layer) //if the rod is close to the position/ and is not itself and on a diiferrent lyer this is true
             {
                 print("name" + name + "New Position" + go.transform.position);
                 this.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, go.transform.position.z);
